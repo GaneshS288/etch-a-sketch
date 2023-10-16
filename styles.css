@@ -1,0 +1,20 @@
+.grid-container div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: aqua;
+    flex: 1;
+}
+
+.grid-container {
+    width: 600px;
+    height: 600px;
+    border: 5px solid black;
+    display: flex;
+}
+
+.rowDiv {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
