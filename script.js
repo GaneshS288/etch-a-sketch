@@ -1,6 +1,12 @@
-function generateGrid () {
-    let gridNumber = Number(prompt('Enter the number of grids you want'))
+function generateGrid (event) {
+    let gridNumber = event.target.value;
     let i = 0;
+
+    const oldDivs = document.querySelectorAll('.rowDiv');
+
+    oldDivs.forEach(div => {
+        div.remove()
+    });
 
     while (i < gridNumber) {
         const rowDiv = document.createElement('div');
@@ -10,7 +16,7 @@ function generateGrid () {
     }
     
     const rows = document.querySelectorAll('.rowDiv');
-    
+
         rows.forEach(row => {
             for (let i = 0; i < gridNumber; i++) {
                 let innerDiv = document.createElement('div');
@@ -19,3 +25,7 @@ function generateGrid () {
             }
         });
 }
+
+let gridValue = document.querySelector('#grid-value');
+
+gridValue.addEventListener('change', generateGrid)

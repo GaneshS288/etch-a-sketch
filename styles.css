@@ -1,3 +1,11 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .grid-container div {
     margin: 0;
     padding: 0;
@@ -7,8 +15,8 @@
 }
 
 .grid-container {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     border: 5px solid black;
     display: flex;
 }
@@ -17,4 +25,8 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+}
+
+#grid-value {
+    width: 300px;
 }
