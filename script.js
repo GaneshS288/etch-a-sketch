@@ -1,5 +1,56 @@
 const blackButton = document.querySelector('.black');
-const blueToBlackButton = document.querySelector
+const blueToBlackButton = document.querySelector('.blue-to-black');
+const rainbowButton = document.querySelector('.rainbow');
+const darkerRainbowButton = document.querySelector('.darker-rainbow');
+
+blackButton.addEventListener('click', () => {
+    divs = document.querySelectorAll('.innerDiv');
+
+    divs.forEach(div => {
+        div.removeEventListener('mouseover', blackDivGradual)
+        div.removeEventListener('mouseover', rainbowDivGradual)
+        div.removeEventListener('mouseover', rainbowDiv)
+        div.addEventListener('mouseover', blackDiv)
+    });
+}
+)
+
+blueToBlackButton.addEventListener('click', () => {
+    divs = document.querySelectorAll('.innerDiv');
+
+    divs.forEach(div => {
+        div.removeEventListener('mouseover', blackDiv)
+        div.removeEventListener('mouseover', rainbowDiv)
+        div.removeEventListener('mouseover', rainbowDivGradual)
+        div.addEventListener('mouseover', blackDivGradual)
+    });
+}
+)
+
+rainbowButton.addEventListener('click', () => {
+    divs = document.querySelectorAll('.innerDiv');
+
+    divs.forEach(div => {
+        div.removeEventListener('mouseover', blackDivGradual)
+        div.removeEventListener('mouseover', blackDiv)
+        div.removeEventListener('mouseover', rainbowDivGradual)
+        div.addEventListener('mouseover', rainbowDiv)
+    });
+}
+)
+
+darkerRainbowButton.addEventListener('click', () => {
+    divs = document.querySelectorAll('.innerDiv');
+
+    divs.forEach(div => {
+        div.removeEventListener('mouseover', blackDivGradual)
+        div.removeEventListener('mouseover', rainbowDiv)
+        div.removeEventListener('mouseover', blackDiv)
+        div.addEventListener('mouseover', rainbowDivGradual)
+    });
+
+}
+)
 
 const gridValue = document.querySelector('#grid-value');
 gridValue.addEventListener('change', generateGrid)
@@ -87,39 +138,39 @@ function rainbowDiv(event) {
 }
 
 function rainbowDivGradual(event) {
-    let oldBlack = event.target.getAttribute('style');
+    let oldAlpha = event.target.getAttribute('style');
     
     let randomRed = (Math.floor(Math.random() * 256));
     let randomGreen = (Math.floor(Math.random() * 256));
-    let black;
-
+    let randomBlue = (Math.floor(Math.random() * 256));
+    let alpha
     
-    if (oldBlack === null) {
-        black = 255;
+    if (oldAlpha === null) {
+        alpha = 0.1;
     }
     
-    else if (isNaN(Number(oldBlack.slice(-5, -2)))) {
-        black = 0;
+    else if (Number(oldAlpha.slice(-4, -2)) == 0.9 || Number(oldAlpha.slice(-4, -2)) == 1 ) {
+        alpha = 0.9;
     }
 
     else {
-        black = Number(oldBlack.slice(-5, -2)) - 26;
+        alpha = Number(oldAlpha.slice(-4, -2)) + 0.1;
     }
     
-    event.target.style.backgroundColor = `rgb(${randomRed} ${randomGreen} ${black})`
+    event.target.style.backgroundColor = `rgba(${randomRed} ${randomGreen} ${randomBlue} / ${alpha})`
    
 }
 
 function gradualllyDarkDiv(event) {
-    let oldBlack = event.target.getAttribute('style');
-    console.log(oldBlack.slice(-5, -2))
+    let oldAlpha = event.target.getAttribute('style');
+    console.log(oldAlpha.slice(-4, -2))
     
 }
 
 function getDivRef() {
 divs = document.querySelectorAll('.innerDiv');
 divs.forEach(div => {
-    div.addEventListener('mouseover', (event) => rainbowDivGradual(event))
-    div.addEventListener('mouseover', gradualllyDarkDiv)
+    div.addEventListener('mouseover', blackDiv)
+    
 });
 }

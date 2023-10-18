@@ -4,6 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    /*background-color: rgba(255, 218, 185, 0.733);*/
 }
 
 .grid-container div {
