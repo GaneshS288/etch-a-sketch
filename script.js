@@ -4,48 +4,36 @@ const rainbowButton = document.querySelector('.rainbow');
 const darkerRainbowButton = document.querySelector('.darker-rainbow');
 
 blackButton.addEventListener('click', () => {
-    divs = document.querySelectorAll('.innerDiv');
+    generateGrid()
 
     divs.forEach(div => {
-        div.removeEventListener('mouseover', blackDivGradual)
-        div.removeEventListener('mouseover', rainbowDivGradual)
-        div.removeEventListener('mouseover', rainbowDiv)
         div.addEventListener('mouseover', blackDiv)
     });
 }
 )
 
 blueToBlackButton.addEventListener('click', () => {
-    divs = document.querySelectorAll('.innerDiv');
+    generateGrid()
 
     divs.forEach(div => {
-        div.removeEventListener('mouseover', blackDiv)
-        div.removeEventListener('mouseover', rainbowDiv)
-        div.removeEventListener('mouseover', rainbowDivGradual)
         div.addEventListener('mouseover', blackDivGradual)
     });
 }
 )
 
 rainbowButton.addEventListener('click', () => {
-    divs = document.querySelectorAll('.innerDiv');
+    generateGrid()
 
     divs.forEach(div => {
-        div.removeEventListener('mouseover', blackDivGradual)
-        div.removeEventListener('mouseover', blackDiv)
-        div.removeEventListener('mouseover', rainbowDivGradual)
         div.addEventListener('mouseover', rainbowDiv)
     });
 }
 )
 
 darkerRainbowButton.addEventListener('click', () => {
-    divs = document.querySelectorAll('.innerDiv');
+    generateGrid()
 
     divs.forEach(div => {
-        div.removeEventListener('mouseover', blackDivGradual)
-        div.removeEventListener('mouseover', rainbowDiv)
-        div.removeEventListener('mouseover', blackDiv)
         div.addEventListener('mouseover', rainbowDivGradual)
     });
 
@@ -53,15 +41,15 @@ darkerRainbowButton.addEventListener('click', () => {
 )
 
 const gridValue = document.querySelector('#grid-value');
-gridValue.addEventListener('change', generateGrid)
+//gridValue.addEventListener('change', generateGrid)
 
 //This needs to be global to store reference to divs in the grid
 let divs;
 
 //removes any divs present inside the container. First creates divs (.rowDivs) equal to the number user inputs then fills these .rowDivs with divs(.innerDivs) equal to user input. The .rowDivs fixs the width of .innerDivs so that they form a square. 
 
-function generateGrid (event) {
-    let gridNumber = event.target.value;
+function generateGrid () {
+    let gridNumber = gridValue.value;
     let i = 0;
 
     const oldDivs = document.querySelectorAll('.rowDiv');
@@ -86,23 +74,22 @@ function generateGrid (event) {
                 row.append(innerDiv)
             }
         });
-
-    getDivRef()    
+        
+        divs = document.querySelectorAll('.innerDiv');
 }
 
 
-//assigns the div a random class to color it. If the same div is selected again removes the previous class and assigns a new one
-
+//assigns the Divs black color when hovered on
 function blackDiv(event) {
     
     let Red = 0;
     let Green = 0;
     let black = 0;
 
-    event.target.style.backgroundColor = `rgb(${Red} ${Green} ${black})`
-   
+    event.target.style.backgroundColor = `rgb(${Red} ${Green} ${black})`  
 }
 
+//colors the div blue and the gradually decreases the B value in RGB to turn it black with every subsequent hover
 function blackDivGradual(event) {
     let oldBlack = event.target.getAttribute('style');
     
@@ -126,9 +113,8 @@ function blackDivGradual(event) {
    
 }
 
+//Assigns the divs a random color
 function rainbowDiv(event) {
-    let oldBlack = event.target.getAttribute('style');
-    
     let randomRed = (Math.floor(Math.random() * 256));
     let randomGreen = (Math.floor(Math.random() * 256));
     let black = (Math.floor(Math.random() * 256));
@@ -137,6 +123,7 @@ function rainbowDiv(event) {
    
 }
 
+//assigns the div a random color and with every subsequent hover increases the alpha value by 0.1(to prevent a bug where the value went above 1 the alpha value doesn't go over 0.9. Need to fix it)
 function rainbowDivGradual(event) {
     let oldAlpha = event.target.getAttribute('style');
     
@@ -159,18 +146,4 @@ function rainbowDivGradual(event) {
     
     event.target.style.backgroundColor = `rgba(${randomRed} ${randomGreen} ${randomBlue} / ${alpha})`
    
-}
-
-function gradualllyDarkDiv(event) {
-    let oldAlpha = event.target.getAttribute('style');
-    console.log(oldAlpha.slice(-4, -2))
-    
-}
-
-function getDivRef() {
-divs = document.querySelectorAll('.innerDiv');
-divs.forEach(div => {
-    div.addEventListener('mouseover', blackDiv)
-    
-});
 }
