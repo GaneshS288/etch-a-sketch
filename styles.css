@@ -10,7 +10,6 @@ body {
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: aqua;
     flex: 1;
 }
 
@@ -30,3 +29,4 @@ body {
 #grid-value {
     width: 300px;
 }
+
