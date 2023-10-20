@@ -40,8 +40,10 @@ darkerRainbowButton.addEventListener('click', () => {
 }
 )
 
+const errorMsg = document.querySelector('.errorMsg');
+
 const gridValue = document.querySelector('#grid-value');
-//gridValue.addEventListener('change', generateGrid)
+
 
 //This needs to be global to store reference to divs in the grid
 let divs;
@@ -57,6 +59,13 @@ function generateGrid () {
     oldDivs.forEach(div => {
         div.remove()
     });
+
+    if (gridNumber < 2 || gridNumber > 100) {
+        errorMsg.textContent = "please enter a valid value"
+    }
+
+    else {
+        errorMsg.textContent = null
 
     while (i < gridNumber) {
         const rowDiv = document.createElement('div');
@@ -74,7 +83,7 @@ function generateGrid () {
                 row.append(innerDiv)
             }
         });
-        
+    }
         divs = document.querySelectorAll('.innerDiv');
 }
 
