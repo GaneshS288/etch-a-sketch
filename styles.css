@@ -3,8 +3,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    background-color: lightslategrey;
+    gap: 5px;
+    background-color: slateblue;
+    color: 8a817c;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .grid-container div {
@@ -20,6 +22,7 @@ body {
     height: 500px;
     border: 5px solid black;
     display: flex;
+    background-color: white;
 }
 
 .rowDiv {
@@ -30,24 +33,32 @@ body {
 
 #grid-value {
     width: 300px;
+    border: 0.2em solid rgba(255, 127, 80, 0.541);
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-bottom: 10px;
 }
 
 button {
-    position: relative;
     padding: 0.5em 1em;
-    border: 0;
     border-radius: 0.5em;
-    background-color: pink;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+    background-color: rgb(255, 77, 109);
   }
 
-  .active, button:active {
-    top: 2px;
-    left: 1px;
-    box-shadow: none;
+  .active,
+  button:active {
+    background-color: rgb(89, 13, 34);
   }
 
   .errorMsg {
-    color: red;
+    color: rgba(255, 251, 0, 0.966);
+    font-size: larger;
+    font-weight: 700;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    text-shadow: 10px;
   }
